@@ -1,0 +1,256 @@
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<title>Luyện thi Đại học 2026-2027 - Hóa học</title>
+<style>
+:root{
+ --navy:#08213f;--navy2:#123e6c;--blue:#1f6fd1;--bg:#f4f7fb;--card:#fff;
+ --line:#dbe5ef;--text:#172033;--muted:#6b778b;--ok:#0b815a;--warn:#996500;
+ --danger:#b42318;--soft:#eef4fb;--violet:#5f55c8;
+}
+*{box-sizing:border-box}
+html,body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,Segoe UI,Arial,sans-serif;padding-left:env(safe-area-inset-left);padding-right:env(safe-area-inset-right)}
+button,input,textarea,select{font:inherit}
+button{cursor:pointer}
+.hidden{display:none!important}
+.topbar{position:sticky;top:0;z-index:40;background:linear-gradient(135deg,var(--navy),var(--navy2));color:#fff;box-shadow:0 3px 18px #001a3426}
+.topbar-in{max-width:1320px;margin:auto;display:flex;align-items:center;gap:12px;padding:10px 16px}
+.logo{width:54px;height:54px;border-radius:50%;overflow:hidden;background:#fff;border:2px solid #ffffff66;flex:0 0 auto;display:flex;align-items:center;justify-content:center;font-weight:900;color:var(--navy)}
+.logo img{width:100%;height:100%;object-fit:cover}
+.brand{min-width:0}
+.brand b{display:block;font-size:16px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.brand small{display:block;opacity:.84;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.top-actions{margin-left:auto;display:flex;gap:8px}
+.btn{border:0;border-radius:10px;padding:10px 14px;font-weight:800}
+.btn-primary{background:var(--blue);color:#fff}
+.btn-soft{background:var(--soft);color:var(--navy)}
+.btn-danger{background:var(--danger);color:#fff}
+.btn-outline{background:transparent;border:1px solid #ffffff66;color:#fff}
+.btn:disabled{opacity:.5;cursor:not-allowed}
+.container{max-width:1320px;margin:auto;padding:18px}
+.card{background:var(--card);border:1px solid var(--line);border-radius:16px;box-shadow:0 8px 26px #08213f0b}
+.hero{padding:26px;display:grid;grid-template-columns:1.3fr .7fr;gap:22px}
+.eyebrow{font-weight:900;color:var(--blue);letter-spacing:.8px}
+.hero h1{margin:7px 0 10px;color:var(--navy);font-size:30px}
+.meta{line-height:1.8;color:var(--muted)}
+.role-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:18px}
+.role{padding:18px;border:1px solid var(--line);border-radius:14px;background:#fff;text-align:left}
+.role h3{margin:0 0 6px;color:var(--navy)}
+.role:hover{border-color:#98bae3;box-shadow:0 8px 22px #1b5fa612}
+.hero-box{padding:18px;border-radius:14px;background:linear-gradient(145deg,#eaf3ff,#fff);border:1px solid #cbdff5}
+.info{border-radius:12px;padding:12px 14px;margin:12px 0;line-height:1.55}
+.info-blue{background:#eef6ff;border:1px solid #cfe2ff;color:#244b76}
+.info-ok{background:#ecf8f3;border:1px solid #bde3d3;color:#145a41}
+.info-warn{background:#fff7e9;border:1px solid #f0d29b;color:#684600}
+.info-danger{background:#fff1f0;border:1px solid #f4c4c0;color:#7a271a}
+.form-grid{display:grid;grid-template-columns:1.3fr .7fr;gap:12px;margin-top:14px}
+.field label{display:block;font-weight:800;margin-bottom:6px}
+.field input,.field textarea,.field select{width:100%;border:1px solid #cbd7e5;border-radius:10px;padding:11px;background:#fff}
+.wait-wrap{padding:26px;text-align:center}
+.wait-icon{width:70px;height:70px;border-radius:50%;display:flex;align-items:center;justify-content:center;margin:auto;background:#eaf3ff;color:var(--blue);font-size:34px;font-weight:900}
+.exam-layout{display:grid;grid-template-columns:290px minmax(0,1fr);gap:18px}
+.sidebar{position:sticky;top:85px;align-self:start;padding:16px;max-height:calc(100vh - 105px);overflow:auto}
+.timer{font-size:28px;font-weight:900;color:var(--navy);background:#eef4fb;border-radius:12px;padding:12px;text-align:center}
+.part-label{font-weight:900;color:var(--navy);margin:16px 0 8px}
+.qnav{display:grid;grid-template-columns:repeat(5,1fr);gap:7px}
+.qnum{border:1px solid #ccd8e7;background:#fff;border-radius:8px;padding:8px 0;font-weight:900;color:var(--navy)}
+.qnum.active{background:var(--blue);border-color:var(--blue);color:#fff}
+.qnum.done{background:#e8f7f1;border-color:#a8dec8;color:#126c4b}
+.qnum.review{box-shadow:inset 0 0 0 2px #e59a16}
+.legend{display:flex;flex-wrap:wrap;gap:10px;font-size:12px;color:var(--muted);margin-top:12px}
+.dot{width:10px;height:10px;border-radius:50%;display:inline-block;margin-right:4px}
+.question-card{padding:22px;min-height:430px}
+.qhead{display:flex;justify-content:space-between;gap:10px;border-bottom:1px solid var(--line);padding-bottom:12px}
+.qtitle{font-size:20px;font-weight:900;color:var(--navy)}
+.tag{font-size:12px;background:#eef4fb;color:#4c647d;padding:5px 8px;border-radius:999px;white-space:nowrap}
+.qbody{padding:18px 0;font-size:16.5px;line-height:1.65}
+.option{display:block;border:1px solid #d8e2ee;border-radius:12px;padding:12px 14px;margin:9px 0;background:#fff;cursor:pointer}
+.option:hover{background:#f8fbff;border-color:#9dbde7}
+.option input{margin-right:8px}
+.tfrow{display:grid;grid-template-columns:minmax(0,1fr) 90px 90px;gap:10px;align-items:center;padding:10px 0;border-bottom:1px dashed #e1e8f0}
+.tfchoice{text-align:center}
+.short,.essay{width:100%;border:1px solid #cad6e5;border-radius:10px;padding:11px}
+.essay{min-height:130px;resize:vertical}
+.asset{max-width:100%;height:auto;display:block;margin:12px auto;border:1px solid #e0e7ef;border-radius:8px;background:#fff}
+.exam-table{width:100%;border-collapse:collapse;margin:12px 0;font-size:14px}
+.exam-table th,.exam-table td{border:1px solid #cfd9e6;padding:7px;text-align:center}
+.exam-table th{background:#f2f6fb;color:#223b59}
+.qactions{display:flex;justify-content:space-between;gap:10px;border-top:1px solid var(--line);padding-top:14px}
+.qactions .g{display:flex;gap:8px;flex-wrap:wrap}
+.exit-note{margin-top:12px;padding:10px;border-radius:10px;background:#fff3f2;border:1px solid #f2c4c0;color:#7a271a;font-weight:800}
+.success-wrap{min-height:65vh;display:flex;align-items:center;justify-content:center;text-align:center}
+.success{padding:36px}
+.success-icon{width:76px;height:76px;border-radius:50%;margin:auto;background:#e8f7f1;color:var(--ok);display:flex;align-items:center;justify-content:center;font-size:40px;font-weight:900}
+.teacher-layout{display:grid;grid-template-columns:290px minmax(0,1fr);gap:18px}
+.teacher-nav{position:sticky;top:85px;align-self:start;padding:16px;max-height:calc(100vh - 105px);overflow:auto}
+.tabs{display:flex;gap:7px;flex-wrap:wrap;margin:12px 0}
+.tabs button{border:1px solid var(--line);background:#fff;border-radius:9px;padding:8px 10px;font-weight:800}
+.tabs button.active{background:var(--navy);color:#fff}
+.teacher-main{padding:20px}
+.table-wrap{overflow:auto}
+table{width:100%;border-collapse:collapse}
+th,td{padding:10px;border-bottom:1px solid #e5ebf2;text-align:left;vertical-align:top}
+th{background:#f5f8fc;color:#30445d}
+.preview-q{padding:16px 0;border-bottom:1px solid #e3eaf2}
+.mini{font-size:12px;color:var(--muted)}
+.badge{display:inline-block;border-radius:999px;padding:4px 8px;font-size:12px;font-weight:800}
+.badge-ok{background:#e8f7f1;color:#126c4b}
+.modal{position:fixed;inset:0;background:#061426aa;display:flex;align-items:center;justify-content:center;padding:18px;z-index:100}
+.modalbox{background:#fff;width:100%;max-width:520px;border-radius:16px;padding:22px}
+.startcode{font-size:36px;letter-spacing:8px;font-weight:900;color:var(--navy);text-align:center;background:#f1f6fc;padding:14px;border-radius:12px}
+@media(max-width:920px){
+ .hero,.exam-layout,.teacher-layout{grid-template-columns:1fr}
+ .sidebar,.teacher-nav{position:static;max-height:none}
+ .qnav{grid-template-columns:repeat(8,1fr)}
+}
+@media(max-width:620px){
+ .container{padding:10px}.hero{padding:17px}.hero h1{font-size:24px}
+ .role-grid,.form-grid{grid-template-columns:1fr}
+ .qnav{grid-template-columns:repeat(6,1fr)}
+ .tfrow{grid-template-columns:1fr 74px 74px}
+ .qhead{flex-direction:column}.question-card{padding:15px}
+ .top-actions{display:none}.brand b{font-size:14px}.brand small{font-size:11px}
+}
+@media(max-width:480px){
+ body{font-size:15px}.topbar-in{padding:8px 10px}.logo{width:44px;height:44px}
+ .container{padding:8px}.hero{padding:14px;border-radius:12px}.hero h1{font-size:22px}
+ .role{padding:14px}.question-card{padding:12px}.qbody{font-size:16px}
+ .option{padding:12px 11px;margin:8px 0}.btn{min-height:44px;padding:10px 12px}
+ input,textarea,select{font-size:16px!important}.qnav{grid-template-columns:repeat(5,1fr)}
+ .qnum{min-height:42px}.timer{font-size:24px}.tfrow{grid-template-columns:1fr 66px 66px;gap:5px}
+ .exam-table{font-size:12px}.exam-table th,.exam-table td{padding:5px}
+ .asset{max-height:42vh;object-fit:contain}
+}
+</style>
+<script>
+window.MathJax={tex:{inlineMath:[['\\(','\\)']],displayMath:[['[',']']]}};
+</script>
+<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+</head>
+<body>
+<header class="topbar">
+ <div class="topbar-in">
+  <div class="logo">LHP</div>
+  <div class="brand">
+   <b>THPT LÊ HỒNG PHONG</b>
+   <small>LUYỆN THI ĐẠI HỌC 2026-2027 • HÓA HỌC • 50 PHÚT • PHÒNG THI SỐ 5</small>
+  </div>
+  <div class="top-actions">
+   <button class="btn btn-outline" onclick="goHome()">Trang đầu</button>
+   <button class="btn btn-outline" onclick="openTeacherLogin()">Giáo viên</button>
+  </div>
+ </div>
+</header>
+
+<main id="home" class="container">
+ <section class="card hero">
+  <div>
+   <div class="eyebrow">PHÒNG THI TRỰC TUYẾN</div>
+   <h1>LUYỆN THI ĐẠI HỌC 2026-2027</h1>
+   <div class="meta">Môn: <b>HÓA HỌC</b><br>Giáo viên: <b>Phan Ngọc Anh</b><br>Thời gian: <b>50 phút</b></div>
+   <div class="role-grid">
+    <button class="role" onclick="showStudentStart()"><h3>HỌC SINH</h3><div>Nhập họ tên, lớp và mã ca thi do giáo viên cung cấp.</div></button>
+    <button class="role" onclick="openTeacherLogin()"><h3>GIÁO VIÊN</h3><div>Xem toàn bộ đề, đáp án, bài làm và cài đặt ca thi.</div></button>
+   </div>
+   <div id="studentStart" class="hidden">
+    <div class="form-grid">
+     <div class="field"><label>Họ và tên *</label><input id="stuName" autocomplete="name" placeholder="Nguyễn Văn A"></div>
+     <div class="field"><label>Lớp *</label><input id="stuClass" autocomplete="off" placeholder="12A1"></div>
+    </div>
+    <div class="field" style="margin-top:12px">
+     <label>Mã ca thi 6 số *</label>
+     <input id="studentStartCode" inputmode="numeric" pattern="[0-9]*" maxlength="6" autocomplete="one-time-code" style="font-size:22px;text-align:center;letter-spacing:5px" placeholder="000000">
+    </div>
+    <div class="info info-blue"><b>Hướng dẫn:</b> Nhập đúng mã ca thi giáo viên vừa tạo. Sau khi bấm <b>VÀO PHÒNG THI</b>, đồng hồ 50 phút sẽ chạy ngay.</div>
+    <div style="margin-top:12px"><button class="btn btn-primary" style="width:100%" onclick="studentEnterExam()">VÀO PHÒNG THI</button></div>
+   </div>
+  </div>
+  <div class="hero-box">
+   <div style="font-weight:900;color:#08213f">Cấu trúc đề số 12</div>
+   <div style="line-height:1.8;margin-top:8px">• Phần I: <b>18 câu nhiều lựa chọn</b><br>• Phần II: <b>4 câu Đúng–Sai</b>, mỗi câu 4 ý<br>• Phần III: <b>6 câu trả lời ngắn</b><br>• P3 Câu 5 giữ nguyên đầy đủ nội dung; điểm tự động của câu đối chiếu theo đáp số chính thức 18,933.</div>
+   <div class="info info-ok"><b>Biểu điểm chuẩn:</b><br>• Phần I: 18 câu × 0,25 = <b>4,5 điểm</b>.<br>• Phần II: 4 câu × tối đa 1,0 = <b>4,0 điểm</b> (Đúng 1 ý = 0,1đ; 2 ý = 0,25đ; 3 ý = 0,5đ; 4 ý = 1,0đ).<br>• Phần III: 6 câu × 0,25 = <b>1,5 điểm</b>.<br><b>Tổng: 10 điểm.</b></div>
+  </div>
+ </section>
+</main>
+
+<main id="examScreen" class="container hidden">
+ <div class="exam-layout">
+  <aside class="card sidebar">
+   <div class="timer" id="timer">50:00</div>
+   <div id="studentNav"></div>
+   <div class="legend">
+    <span><span class="dot" style="background:#e8f7f1;border:1px solid #a8dec8"></span>Đã làm</span>
+    <span><span class="dot" style="background:#fff;border:1px solid #ccd8e7"></span>Chưa làm</span>
+    <span><span class="dot" style="background:#e59a16"></span>Xem lại</span>
+   </div>
+   <div style="margin-top:14px"><button class="btn btn-danger" style="width:100%" onclick="confirmSubmit()">NỘP BÀI</button></div>
+   <div class="exit-note">Thoát khỏi màn hình làm bài, kết thúc bài thi và chấm điểm</div>
+  </aside>
+  <section class="card question-card"><div id="studentQuestion"></div></section>
+ </div>
+</main>
+
+<main id="submitted" class="container hidden">
+ <section class="card success-wrap">
+  <div class="success">
+    <div class="success-icon">✓</div>
+    <h1 style="color:#08213f; margin-top:16px;">ĐÃ NỘP BÀI THÀNH CÔNG!</h1>
+    <div id="studentResultSummary" style="margin:20px 0; font-size:18px;"></div>
+    <button class="btn btn-primary" onclick="goHome()">Quay về trang chủ</button>
+  </div>
+ </section>
+</main>
+
+<main id="teacher" class="container hidden">
+ <div class="teacher-layout">
+  <aside class="card teacher-nav">
+   <div style="font-weight:900;color:#08213f">GIÁO VIÊN</div>
+   <div class="mini">Phan Ngọc Anh • Hóa học</div>
+   <div style="margin-top:12px"><button class="btn btn-primary" style="width:100%" onclick="teacherCreateSessionCode()">TẠO MÃ CA THI</button></div>
+   <div id="teacherStartCodeBox" class="hidden" style="margin-top:12px">
+    <div class="mini">Mã ca thi hiện tại:</div>
+    <div class="startcode" id="teacherStartCode">------</div>
+   </div>
+   <div class="tabs">
+    <button id="tabPreview" class="active" onclick="teacherTab('preview')">Xem đề</button>
+    <button id="tabAttempts" onclick="teacherTab('attempts')">Bài làm</button>
+    <button id="tabSettings" onclick="teacherTab('settings')">Cài đặt</button>
+   </div>
+   <button class="btn btn-soft" style="width:100%" onclick="teacherLogout()">ĐĂNG XUẤT</button>
+  </aside>
+  <section class="card teacher-main">
+   <div id="teacherPreviewPane"></div>
+   <div id="teacherAttemptsPane" class="hidden"></div>
+   <div id="teacherSettingsPane" class="hidden"></div>
+  </section>
+ </div>
+</main>
+
+<div id="teacherLoginModal" class="modal hidden">
+ <div class="modalbox">
+  <h3 style="margin-top:0;color:#08213f">Đăng nhập giáo viên</h3>
+  <div class="field"><label>Passcode</label><input id="teacherPass" type="password" placeholder="Nhập A12345"></div>
+  <div style="display:flex;justify-content:flex-end;gap:8px;margin-top:14px">
+   <button class="btn btn-soft" onclick="closeTeacherLogin()">Hủy</button>
+   <button class="btn btn-primary" onclick="teacherLogin()">ĐĂNG NHẬP</button>
+  </div>
+  <div class="mini" style="margin-top:10px"><b>Passcode mặc định: A12345</b></div>
+ </div>
+</div>
+
+<div id="submitModal" class="modal hidden">
+ <div class="modalbox">
+  <h3 style="margin-top:0;color:#08213f">Xác nhận nộp bài</h3>
+  <p>Bạn có chắc chắn muốn kết thúc và nộp bài thi ngay bây giờ?</p>
+  <div style="display:flex;justify-content:flex-end;gap:8px">
+   <button class="btn btn-soft" onclick="closeSubmit()">Quay lại</button>
+   <button class="btn btn-danger" onclick="submitExam(false)">NỘP BÀI</button>
+  </div>
+ </div>
+</div>
+
+<script>
+const EXAM={"exam_metadata": {"exam_name": "ĐỀ THI ONLINE SỐ 12", "subject": "HÓA HỌC", "curriculum": "GDPT 2018", "grade": null, "grade_status": "CHƯA THẤY GHI RÕ TRONG FILE ĐỀ", "duration_minutes": 50, "duration_status": "50 PHÚT", "total_score": 10, "score_status": "10 ĐIỂM", "exam_pdf_pages": 4, "answer_pdf_pages": 6, "answer_key_source": "Dap_An_Chi_Tiet_De_12_Hoa_Hoc.pdf"}, "summary": {"P1": {"type": "multiple_choice_single_answer", "count": 18}, "P2": {"type": "true_false", "count": 4, "statements_each": 4}, "P3": {"type": "short_answer", "count": 6}, "total_top_level_questions": 28}, "parts": [{"part_id": "P1", "title_original": "PHẦN I. Câu trắc nghiệm nhiều phương án lựa chọn. Thí sinh trả lời từ câu 1 đến câu 18.", "type": "multiple_choice_single_answer", "questions": [{"id": "P1Q01", "source_label": "Câu 1", "question_original": "Thực hiện thí nghiệm cho kim loại kiềm tác dụng với nước như sau: Cho mỗi mẩu kim loại Li, Na và K bằng hạt đậu xanh vào các chậu thuỷ tinh tương ứng có chứa nước. Phát biểu nào sau đây là sai?", "options": [{"label": "A", "text_original": "Mẩu kim loại Na chuyển động nhanh trên mặt nước, tạo thành khối cầu và có khí thoát ra."}, {"label": "B", "text_original": "Mẩu kim loại Li chuyển động trên mặt nước chậm nhất, có khí thoát ra."}, {"label": "C", "text_original": "Mẩu kim loại K chuyển động nhanh trên mặt nước, kèm theo cháy mạnh và có khí thoát ra."}, {"label": "D", "text_original": "Cho mảnh giấy quỳ tím vào mỗi dung dịch sau phản ứng, thấy quỳ tím chuyển màu hồng."}], "tables": [], "latex": [], "image_refs": [], "answer": "D", "answer_explanation": "Phản ứng kim loại kiềm với nước tạo dung dịch kiềm nên quỳ tím chuyển xanh; phát biểu D sai."}, {"id": "P1Q02", "source_label": "Câu 2", "question_original": "Kết quả thí nghiệm của các chất X, Y, Z với các thuốc thử được ghi ở bảng sau:\nCác chất X, Y, Z lần lượt là", "options": [{"label": "A", "text_original": "Ethylamine, aniline, glucose."}, {"label": "B", "text_original": "Aniline, glucose, ethylamine."}, {"label": "C", "text_original": "Glucose, ethylamine, aniline."}, {"label": "D", "text_original": "Ethylamine, glucose, aniline."}], "tables": [{"headers": ["Chất", "Thuốc thử", "Hiện tượng"], "rows": [["X", "Quỳ tím", "Quỳ tím chuyển xanh"], ["Y", "Dung dịch AgNO3 trong NH3", "Tạo kết tủa Ag"], ["Z", "Nước bromine", "Tạo kết tủa trắng"]]}], "latex": [], "image_refs": [], "answer": "D", "answer_explanation": "X có tính base → ethylamine; Y phản ứng AgNO3/NH3 → glucose; Z tạo kết tủa trắng với nước bromine → aniline."}, {"id": "P1Q03", "source_label": "Câu 3", "question_original": "Cho bảng thế điện cực chuẩn
+  
